@@ -122,15 +122,72 @@ void plasma_core_omp_dgemm(
     else
         bk = k;
 
-    #pragma omp task depend(in:A[0:lda*ak]) \
-                     depend(in:B[0:ldb*bk]) \
-                     depend(inout:C[0:ldc*n])
+    if (sequence->status == PlasmaSuccess)
     {
-        if (sequence->status == PlasmaSuccess)
-            plasma_core_dgemm(transa, transb,
-                       m, n, k,
-                       alpha, A, lda,
-                              B, ldb,
-                       beta,  C, ldc);
+        int transa_ = transa, transb_ = transb;
+        int size_A = lda*ak, size_B = ldb*bk,size_C =ldc*n;
+        #pragma omp target nowait                           \
+            depend(in:A[0:lda*ak])                          \
+            depend(in:B[0:ldb*bk])                          \
+            depend(inout:C[0:ldc*n])                        \
+            firstprivate(m,n,k,alpha,beta,lda,ak)           \
+            firstprivate(ldb,bk,ldc,transa_,transb_)        \
+            map(to:A[0:size_A],B[0:size_B])                 \
+            map(tofrom:C[0:size_C])
+        {
+            int block_size = 2, size_matrix = lda;
+            int m_new = m/block_size;
+            int n_new = n/block_size;
+            int k_new = k/block_size;
+            int zbeta;
+            //#pragma omp parallel
+            //#pragma omp single
+            for (int m_ = 0; m_ < m_new; m_++) { 
+                #pragma omp parallel for 
+                for (int n_ = 0; n_ < n_new; n_++) {
+                    for (int k_ = 0; k_ < k_new; k_++) {
+                        double A_new [block_size*block_size],B_new[block_size*block_size],C_new[block_size*block_size];
+                        int i_a = m_, j_a=k_;
+                        int i_b = k_, j_b=n_;
+                        int i_c = m_, j_c=n_;
+                        int insert = 0;
+                        for(int l=0;l<block_size;l++)
+                        {
+                            int before_a = i_a*block_size+j_a*lda*block_size + l*size_matrix;
+                            int before_b = i_b*block_size+j_b*lda*block_size + l*size_matrix;
+                            int before_c = i_c*block_size+j_c*lda*block_size + l*size_matrix;
+                            for (int i = 0; i < block_size; i++)
+                            {
+                                A_new[insert] = A[before_a];
+                                B_new[insert] = B[before_b];
+                                C_new[insert] = C[before_c];
+                                insert += 1;
+                                before_a += 1;
+                                before_b += 1;
+                                before_c += 1;
+                            }
+                        }
+                        double zbeta = k_== 0 ? beta : 1.0;
+                        plasma_core_dgemm(transa_, transb_,
+                            block_size, block_size, block_size,
+                            alpha, (const double *) A_new, block_size,
+                                   (const double *) B_new, block_size,
+                            zbeta, (double *) C_new, block_size);
+                        insert = 0;
+                        for(int l=0;l<block_size;l++)
+                        {
+                            int before_c = i_c*block_size+j_c*lda*block_size + l*size_matrix;
+                            for (int i = 0; i < block_size; i++)
+                            {
+                                C[before_c]=C_new[insert];
+                                insert += 1;
+                                before_c += 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
 }

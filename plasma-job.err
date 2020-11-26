@@ -1,0 +1,169 @@
+Building with OpenMP offloading support
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:12: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+           ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:12: note: use function 'fabs' instead
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+           ^~~~~
+           fabs
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:34: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+                                 ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:34: note: use function 'fabs' instead
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+                                 ^~~~~
+                                 fabs
+2 warnings generated.
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:12: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+           ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:12: note: use function 'fabs' instead
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+           ^~~~~
+           fabs
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:34: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+                                 ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_scabs1.c:37:34: note: use function 'fabs' instead
+    return fabsf(creal(alpha)) + fabsf(cimag(alpha));
+                                 ^~~~~
+                                 fabs
+2 warnings generated.
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_chessq.c:43:26: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+            float absa = fabsf(creal(A[lda*i+i]));
+                         ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_chessq.c:43:26: note: use function 'fabs' instead
+            float absa = fabsf(creal(A[lda*i+i]));
+                         ^~~~~
+                         fabs
+1 warning generated.
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:70:37: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:70:37: note: use function 'fabs' instead
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^~~~~
+                                    fabs
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:78:37: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:78:37: note: use function 'fabs' instead
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^~~~~
+                                    fabs
+2 warnings generated.
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_chessq.c:43:26: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+            float absa = fabsf(creal(A[lda*i+i]));
+                         ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_chessq.c:43:26: note: use function 'fabs' instead
+            float absa = fabsf(creal(A[lda*i+i]));
+                         ^~~~~
+                         fabs
+1 warning generated.
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:70:37: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:70:37: note: use function 'fabs' instead
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^~~~~
+                                    fabs
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:78:37: warning: absolute value function 'fabsf' given an argument of type 'double' but has parameter of type 'float' which may cause truncation of value [-Wabsolute-value]
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^
+/home/carlacc/MC970/plasma-project-crl123/core_blas/core_clanhe.c:78:37: note: use function 'fabs' instead
+                        value[j] += fabsf(creal(A[lda*j+j]));
+                                    ^~~~~
+                                    fabs
+2 warnings generated.
+/home/carlacc/MC970/plasma-project-crl123/test/test_zher2k.c:180:32: warning: using complex absolute value function 'cabs' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabs(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_zher2k.c:180:32: note: use function 'fabs' instead
+                         + 2 * cabs(beta) * Cnorm;
+                               ^~~~
+                               fabs
+1 warning generated.
+/home/carlacc/MC970/plasma-project-crl123/test/test_cher2k.c:180:32: warning: using complex absolute value function 'cabsf' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_cher2k.c:180:32: note: use function 'fabsf' instead
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^~~~~
+                               fabsf
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:161:48: warning: using complex absolute value function 'cabs' when argument is of floating point type [-Wabsolute-value]
+        double normalize = sqrt((double)k+2) * cabs(alpha) * Anorm * Anorm
+                                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:161:48: note: use function 'fabs' instead
+        double normalize = sqrt((double)k+2) * cabs(alpha) * Anorm * Anorm
+                                               ^~~~
+                                               fabs
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:162:32: warning: using complex absolute value function 'cabs' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabs(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:162:32: note: use function 'fabs' instead
+                         + 2 * cabs(beta) * Cnorm;
+                               ^~~~
+                               fabs
+1 warning generated.
+2 warnings generated.
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:161:47: warning: using complex absolute value function 'cabsf' when argument is of floating point type [-Wabsolute-value]
+        float normalize = sqrtf((float)k+2) * cabsf(alpha) * Anorm * Anorm
+                                              ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:161:47: note: use function 'fabsf' instead
+        float normalize = sqrtf((float)k+2) * cabsf(alpha) * Anorm * Anorm
+                                              ^~~~~
+                                              fabsf
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:162:32: warning: using complex absolute value function 'cabsf' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:162:32: note: use function 'fabsf' instead
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^~~~~
+                               fabsf
+2 warnings generated.
+/home/carlacc/MC970/plasma-project-crl123/test/test_cher2k.c:180:32: warning: using complex absolute value function 'cabsf' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_cher2k.c:180:32: note: use function 'fabsf' instead
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^~~~~
+                               fabsf
+/home/carlacc/MC970/plasma-project-crl123/test/test_zher2k.c:180:32: warning: using complex absolute value function 'cabs' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabs(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_zher2k.c:180:32: note: use function 'fabs' instead
+                         + 2 * cabs(beta) * Cnorm;
+                               ^~~~
+                               fabs
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:161:48: warning: using complex absolute value function 'cabs' when argument is of floating point type [-Wabsolute-value]
+        double normalize = sqrt((double)k+2) * cabs(alpha) * Anorm * Anorm
+                                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:161:48: note: use function 'fabs' instead
+        double normalize = sqrt((double)k+2) * cabs(alpha) * Anorm * Anorm
+                                               ^~~~
+                                               fabs
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:162:32: warning: using complex absolute value function 'cabs' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabs(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_zherk.c:162:32: note: use function 'fabs' instead
+                         + 2 * cabs(beta) * Cnorm;
+                               ^~~~
+                               fabs
+1 warning generated.
+1 warning generated.
+2 warnings generated.
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:161:47: warning: using complex absolute value function 'cabsf' when argument is of floating point type [-Wabsolute-value]
+        float normalize = sqrtf((float)k+2) * cabsf(alpha) * Anorm * Anorm
+                                              ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:161:47: note: use function 'fabsf' instead
+        float normalize = sqrtf((float)k+2) * cabsf(alpha) * Anorm * Anorm
+                                              ^~~~~
+                                              fabsf
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:162:32: warning: using complex absolute value function 'cabsf' when argument is of floating point type [-Wabsolute-value]
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^
+/home/carlacc/MC970/plasma-project-crl123/test/test_cherk.c:162:32: note: use function 'fabsf' instead
+                         + 2 * cabsf(beta) * Cnorm;
+                               ^~~~~
+                               fabsf
+2 warnings generated.

@@ -85,7 +85,7 @@ static inline size_t plasma_element_size(int type)
     case PlasmaRealDouble:    return   sizeof(double);
     case PlasmaComplexFloat:  return 2*sizeof(float);
     case PlasmaComplexDouble: return 2*sizeof(double);
-    default: assert(0);
+    default: assert(0); return 0;
     }
 }
 
