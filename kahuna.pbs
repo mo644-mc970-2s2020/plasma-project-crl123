@@ -4,7 +4,7 @@
 #PBS -e plasma-job.err
 #PBS -V
 #PBS -l walltime=00:50:00
-#PBS -l select=3:ncpus=40:ngpus=0:Qlist=Allnodes
+#PBS -l select=5:ncpus=40:ngpus=0:Qlist=Allnodes
 #!/bin/sh
 
 # The header above specifies the resources that the job can use.
@@ -14,9 +14,6 @@
 
 # Change current folder to job directory
 cd $PBS_O_WORKDIR
-
-# Create build folder
-mkdir build_$PBS_JOBID
 
 # Singularity image path
 SIF_IMG=/scratch/rodrigofreitas/ompcluster/plasma-dev_latest.sif
@@ -42,24 +39,14 @@ rm temp$PBS_JOBID.txt
 sed -i 1d hostfile$PBS_JOBID.txt
 
 ALLOCATED_NODES=$(cat hostfile$PBS_JOBID.txt|wc -l)
-mv hostfile$PBS_JOBID.txt build_$PBS_JOBID/
-
 echo "Got $ALLOCATED_NODES nodes!"
 
-# Compile PLASMA
-cd build_$PBS_JOBID
-singularity exec $SIF_IMG cmake ..
-singularity exec $SIF_IMG make -j24
-
 # Execute PLASMA within OmpCluster container using Singularity
-#mpirun -hostfile hostfile$PBS_JOBID.txt -ppn 1 singularity exec $SIF_IMG ./plasmatest
-mpirun -hostfile hostfile$PBS_JOBID.txt -ppn 1 singularity exec $SIF_IMG ./plasmatest dgemm --dim=256 --nb=64
+export OMP_NUM_THREADS=24
+#mpirun -hostfile hostfile$PBS_JOBID.txt -ppn 1 singularity exec $SIF_IMG ./plasmatest dgemm --dim=4 --nb=2 --test=y
+singularity exec $SIF_IMG ./build/plasmatest dgemm --dim=24 --nb=8 --test=y
 
-# TODO: For now, this command only lists the kernels available in PLASMA.
-# You need to configure the kernel that was attributed to you.
-# For example, running the following command would execute the dgeadd kernel
-# singularity exec $SIF_IMG ./plasmatest dgeadd
+
 
 # Remove build folder and hostfile
-cd ..
-rm build_$PBS_JOBID -rf
+rm -rf hostfile$PBS_JOBID.txt
