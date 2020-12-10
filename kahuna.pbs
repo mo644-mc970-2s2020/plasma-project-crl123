@@ -44,7 +44,7 @@ echo "Got $ALLOCATED_NODES nodes!"
 # Execute PLASMA within OmpCluster container using Singularity
 export OMP_NUM_THREADS=24
 #mpirun -hostfile hostfile$PBS_JOBID.txt -ppn 1 singularity exec $SIF_IMG ./plasmatest dgemm --dim=4 --nb=2 --test=y
-singularity exec $SIF_IMG ./build/plasmatest dgemm --dim=24 --nb=8 --test=y
+singularity exec $SIF_IMG ./build/plasmatest dgemm --dim=64 --nb=16 --test=y
 
 
 

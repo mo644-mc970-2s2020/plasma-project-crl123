@@ -136,14 +136,16 @@ void plasma_core_omp_dgemm(
             map(to:A[0:size_A],B[0:size_B])                     \
             map(tofrom:C[0:size_C])
         {
-            int block_size = 2, size_matrix = lda;
+            int block_size = 4, size_matrix = lda;
             int m_new = m/block_size;
             int n_new = n/block_size;
             int k_new = k/block_size;
             int zbeta;
             #pragma omp parallel
-            for (int m_ = 0; m_ < m_new; m_++){
-                for (int n_ = 0; n_ < n_new; n_++) {
+            #pragma omp single
+            {
+                for (int m_ = 0; m_ < m_new; m_++){
+                    for (int n_ = 0; n_ < n_new; n_++) {
                     for (int k_ = 0; k_ < k_new; k_++) { 	
                         int lda_ = m_ * block_size + k_ * block_size;
                         int ldb_ = k_ * block_size + n_ * block_size;
@@ -196,6 +198,7 @@ void plasma_core_omp_dgemm(
                         }
                     }
                 }
+            }
             }
         }
         /*#pragma omp target nowait                           \

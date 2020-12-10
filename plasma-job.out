@@ -1,0 +1,6 @@
+Got 5 nodes!
+
+  Status      Error       Time    Gflop/s  transA  transB       m       n       k    nb           alpha            beta  padA  padB  padC
+
+    pass   0.00e+00     0.0045     0.1155       n       n      64      64      64    16   1.23 +  2.35i   6.79 +  7.89i     0     0     0
+
