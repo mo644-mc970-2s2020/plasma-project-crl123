@@ -107,15 +107,32 @@ void plasma_core_omp_ssymm(
     else
         ak = n;
 
-    #pragma omp task depend(in:A[0:lda*ak]) \
-                     depend(in:B[0:ldb*n]) \
-                     depend(inout:C[0:ldc*n])
+   int side_new = side;
+   int uplo_new = uplo; 
+
+
+//    #pragma omp task depend(in:A[0:lda*ak]) \
+//                     depend(in:B[0:ldb*n]) \
+//                     depend(inout:C[0:ldc*n])
+    
+    int size_A = lda*ak, size_B = ldb*n,size_C =ldc*n;
+    if (sequence->status == PlasmaSuccess)
     {
-        if (sequence->status == PlasmaSuccess)
-            plasma_core_ssymm(side, uplo,
+        #pragma omp target nowait                              \
+            depend(in:A[0:lda*ak])                              \
+            depend(in:B[0:ldb*n])                              \
+            depend(inout:C[0:ldc*n])                            \
+            firstprivate(m,n,alpha,beta,lda,ak)               \
+            firstprivate(ldb,ldc,side_new,uplo_new)            \
+            map(to:A[0:size_A],B[0:size_B])                     \
+            map(tofrom:C[0:size_C])
+        {
+        plasma_core_ssymm(side_new, uplo_new,
                        m, n,
                        alpha, A, lda,
                               B, ldb,
                        beta,  C, ldc);
+    
+	} 
     }
 }
